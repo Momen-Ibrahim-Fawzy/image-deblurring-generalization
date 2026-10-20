@@ -1,0 +1,27 @@
+# Fine-tune SAM-guided FFTformer on GoPro, validate on a GoPro test subset.
+# Generalisation is then measured on RealBlur-J / RealBlur-R with scripts/evaluate.py.
+seed: 0
+output_dir: runs/sam_fftformer_gopro
+
+data:
+  dataset: gopro
+  root: data/GOPRO_Large
+  patch_size: 256
+  max_masks: 32
+  train_masks: data/masks/gopro_train      # SAM on blurry training images
+  val_masks: data/masks/gopro_test         # SAM on pre-deblurred test images
+  val_images: 100
+
+model:
+  pretrained_backbone: weights/fftformer_GoPro.pth
+  feat_channels: 16          # S in the architecture figure
+  mask_dropout: 0.5
+
+train:
+  iterations: 100000
+  batch_size: 4
+  workers: 8
+  lr: 2.0e-4                 # MAP unit + projection
+  backbone_lr_scale: 0.1     # pre-trained FFTformer is fine-tuned 10x slower
+  freq_weight: 0.1
+  val_every: 5000
