@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deblur"
+version = "1.0.0"
+description = "Generalizable image deblurring: FFTformer, SAM-Deblur and a SAM-guided FFTformer (CSE779 course project)"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Momen Ibrahim Fawzy" }]
+dependencies = [
+  "torch>=1.13",
+  "numpy",
+  "pillow",
+  "pyyaml",
+  "tqdm",
+  "einops",
+]
+
+[project.optional-dependencies]
+sam = ["segment-anything @ git+https://github.com/facebookresearch/segment-anything.git"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.ipynb_checkpoints/
+
+# data, weights and outputs are never committed
+data/
+weights/
+external/
+runs/
+results/*.csv
+*.pth
+*.pt
+*.npz
+*.zip
+*.tar.gz
