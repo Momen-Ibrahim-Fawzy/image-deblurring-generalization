@@ -5,10 +5,10 @@ __pycache__/
 .ipynb_checkpoints/
 
 # data, weights and outputs are never committed
-data/
-weights/
-external/
-runs/
+/data/
+/weights/
+/external/
+/runs/
 results/*.csv
 *.pth
 *.pt
